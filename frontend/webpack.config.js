@@ -1,8 +1,8 @@
 const webpack = require('webpack')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-modulo.exports = {
-    entry: './scr/index.jsx',
+module.exports = {
+    entry: './src/index.jsx',
     output: {
         path: __dirname + '/public',
         filename: './app.js'
@@ -20,12 +20,12 @@ modulo.exports = {
         }
     },
     plugins: [
-        new webpack.ProgressPlugin({
+        new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery',
             'window.jQuery': 'jquery'
         }),
-        new ExtractTextPlugin.extract('app.css')
+        new ExtractTextPlugin('app.css')
     ],
     module: {
         loaders:[{
