@@ -7,8 +7,7 @@ class TabHeader extends Component {
                 <a href='javascript:(void);'
                     data-toggle='tab'
                     data-target={this.props.target}>
-                    <i className={` fa fa-${this.props.icon}`}></i>
-                    { this.props.label }
+                    <i className={` fa fa-${this.props.icon}`}></i> { this.props.label }
                 </a>
             </li>
         )
