@@ -1,6 +1,25 @@
-import React from 'react'
+import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 
-class BillingCycleList extends React.Component {
+import { getList } from './billingCycleActions'
+
+class BillingCycleList extends Component {
+
+    componentWillMount(){
+        this.props.getList()
+    }
+
+    renderRow(){
+        const list = this.props.list || []
+        return list.map( row  => (
+            <tr key={row._id}>
+                <td>{row.name}</td>
+                <td>{row.month}</td>
+                <td>{row.year}</td>
+            </tr>
+        ))
+    }
 
     render() {
         return (
@@ -14,7 +33,7 @@ class BillingCycleList extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-
+                        { this.renderRow() }
                     </tbody>
                 </table>
             </div>
@@ -23,4 +42,7 @@ class BillingCycleList extends React.Component {
 
 }
 
-export default BillingCycleList
+const mapStateToProps = state => ({ list: state.billingCycle.list })
+const mapDispatchToProps = dispatch => bindActionCreators({ getList }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(BillingCycleList)
